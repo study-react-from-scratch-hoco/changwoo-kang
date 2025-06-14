@@ -116,3 +116,20 @@ console.log(getName()); // "Arindam"
 setName("Paul");
 console.log(getName()); // "Paul"
 ```
+
+- count 값이 렌더링 되지 않아서 찾아본 결과 render에서 string을 받는 것을 기본으로 처리하고 있어 보이지 않았다. 이 부분에서 number 타입을 고려해 수정한 결과 정상 작동했다.
+
+```javascript
+const render = (el, container) => {
+  let domEl;
+  // 0. el의 유형을 확인합니다.
+  // 문자열인 경우 텍스트 노드처럼 처리해야 합니다.
+  if (typeof el === "string" || typeof el === "number") {
+    domEl = document.createTextNode(String(el));
+    container.appendChild(domEl);
+    // 텍스트에 대한 자식이 없으므로 반환합니다.
+    return;
+  }
+  ...
+}
+```
