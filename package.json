@@ -2,7 +2,7 @@
   "name": "node-starter",
   "version": "0.0.0",
   "scripts": {
-    "dev": "tsc -w"
+    "dev": "tsc -w & npx serve ."
   },
   "devDependencies": {
     "@types/react": "^19.1.6",
